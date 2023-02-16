@@ -7,6 +7,9 @@
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
 
+	<!-- load the properties file: sport.properties -->
+	<context:property-placeholder
+		location="classpath:sport.properties" />
 	<!-- Define your beans here -->
 
 	<!-- Define your dependency -->
@@ -15,9 +18,21 @@
 		class="spring_application.HappyFortuneService">
 	</bean>
 
-	<bean id="myCoach" class="spring_application.BaseballCoach">
+	<bean id="myMixFortuneService"
+		class="spring_application.MixFortuneService">
+	</bean>
+	<bean id="myGolfCoach" class="spring_application.GolfCoach">
+		<constructor-arg ref="myMixFortuneService" />
+	</bean>
+
+	<!-- named myMixFortuneService type of MixFortuneService object has been 
+		created and named myGolfCoach type of GolfCoach object has been created also 
+		myMixFortuneService object has been sent to myGolfCoach as the constructor -->
+		
+	<bean id="myCoach" class="spring_application.TrackCoach">
 		<!-- set up constructor injection -->
-		<constructor-arg ref="myFortuneService" />
+		<constructor-arg ref="myFortuneService" />  <!-- HappyFortuneService turunden myfortuneService nesnesi TrackCoach constructor'ina 
+			gonderiliyor -->
 	</bean>
 
 
@@ -25,6 +40,9 @@
 
 		<!-- set up injection -->
 		<property name="fortuneService" ref="myFortuneService" />
+		<!-- inject literal values -->
+		<property name="emailAdress" value="${foo.email}" />
+		<property name="team" value="${foo.team}" />
 	</bean>
 
 
