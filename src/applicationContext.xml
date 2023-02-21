@@ -31,14 +31,15 @@
 		
 	<bean id="myCoach" class="spring_application.TrackCoach">
 		<!-- set up constructor injection -->
-		<constructor-arg ref="myFortuneService" />  <!-- HappyFortuneService turunden myfortuneService nesnesi TrackCoach constructor'ina 
-			gonderiliyor -->
+		<constructor-arg ref="myFortuneService" />  <!-- Sending myfortuneService object of
+		 type HappyFortuneService to TrackCoach constructor -->
 	</bean>
 
 
-	<bean id="myCricketCoach" class="spring_application.CricketCoach">
+	<bean id="myCricketCoach" 
+	class="spring_application.CricketCoach">
 
-		<!-- set up injection -->
+		<!-- set up injection / setter injection -->
 		<property name="fortuneService" ref="myFortuneService" />
 		<!-- inject literal values -->
 		<property name="emailAdress" value="${foo.email}" />
