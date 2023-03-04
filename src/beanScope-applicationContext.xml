@@ -19,7 +19,7 @@
 			
 	<bean id="myCoach"
 	 class="spring_application.TrackCoach"
-	 scope="prototype">
+	 scope="prototype"><!-- default scope is singleton -->
 	 
 		<!-- set up constructor injection -->
 		<constructor-arg ref="myFortuneService" />  <!-- HappyFortuneService turunden myfortuneService nesnesi TrackCoach constructor'ina 
